@@ -45,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void submitOrder(View view) {
-        int price = orderQty * unitPrice;
-        String priceMessage = "Total: $" + price;
-        if(price > 0) priceMessage += "\nThank you!";
+        int price = calculatePrice();
+        String priceMessage = orderSummary(price);
         displayMessage(priceMessage);
     }
 
@@ -72,7 +71,18 @@ public class MainActivity extends AppCompatActivity {
         priceTextView.setText(message);
     }
 
-    private int calculatePrice(int quantity){
-        return quantity * unitPrice;
+    private int calculatePrice(){
+        return orderQty* unitPrice;
+    }
+
+    /**
+     * This method displays the given quantity value on the screen.
+     * @param price price of total order
+     * @return String messages of order summary including customer name, order qty and total price.
+     */
+    private String orderSummary(int price){
+        String summary = "name:성윤식\nQuantity:" + orderQty + "\nTotal: $" + orderQty * unitPrice;
+        if(orderQty>0) summary += "\nThank you!";
+        return summary;
     }
 }
