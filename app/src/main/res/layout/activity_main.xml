@@ -47,6 +47,22 @@
             />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="price"
+        android:textAllCaps="true"
+        />
+
+    <TextView
+        android:id="@+id/price_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="0" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

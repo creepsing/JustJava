@@ -21,6 +21,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     private int orderQty = 0;
+    private int unitPrice = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +34,45 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void minusOne(View view){
-        if(orderQty>0) orderQty--;
-        display(orderQty);
+        if(orderQty >0) orderQty--;
+        displayQuantity(orderQty);
+
     }
 
     public void plusOne(View view){
-        display(++orderQty);
+        displayQuantity(++orderQty);
+
     }
 
     public void submitOrder(View view) {
-        display(1);
+        int price = orderQty * unitPrice;
+        String priceMessage = "Total: $" + price;
+        if(price > 0) priceMessage += "\nThank you!";
+        displayMessage(priceMessage);
     }
 
     /**
      * This method displays the given quantity value on the screen.
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
         quantityTextView.setText("" + number);
+    }
+
+    private void displayPrice(String price) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText("$"+price);
+    }
+
+    /**
+     * This method displays the given text on the screen.
+     */
+    private void displayMessage(String message) {
+        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+        priceTextView.setText(message);
+    }
+
+    private int calculatePrice(int quantity){
+        return quantity * unitPrice;
     }
 }
