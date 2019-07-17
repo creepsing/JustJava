@@ -1,11 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+
+   tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edittext_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:layout_marginBottom="16dp"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toppings"
+        android:textAllCaps="true"
+        />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        >
+
+        <CheckBox android:id="@+id/checkbox_whipped_cream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Whipped Cream"
+            android:textSize="16sp"
+            android:paddingLeft="24dp"
+            android:shadowColor="@android:color/holo_blue_dark"
+            android:onClick="onCheckboxClicked"/>
+
+        <CheckBox android:id="@+id/checkbox_chocolate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chocolate"
+            android:textSize="16sp"
+            android:paddingLeft="24dp"
+            android:shadowColor="@android:color/holo_blue_dark"
+            android:onClick="onCheckboxClicked"/>
+
+    </LinearLayout>
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,4 +121,5 @@
         android:text="order"
         android:onClick="submitOrder"
     />
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

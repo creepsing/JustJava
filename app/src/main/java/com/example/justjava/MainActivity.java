@@ -10,9 +10,14 @@ package com.example.justjava;
 
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -22,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private int orderQty = 0;
     private int unitPrice = 5;
+    private boolean whippedCream = false;
+    private boolean chocolate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +47,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void plusOne(View view){
-        displayQuantity(++orderQty);
+        if(orderQty < 100) orderQty++;
+        displayQuantity(orderQty);
 
     }
 
     public void submitOrder(View view) {
         int price = calculatePrice();
         String priceMessage = orderSummary(price);
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Just Java Order");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+
+//        emailIntent = new Intent(Intent.ACTION_VIEW);
+//        emailIntent.setData(Uri.parse("geo:47.6, -122.3"));
+
+//        if(emailIntent.resolveActivity(getPackageManager()) != null) {
+//            startActivity(emailIntent);
+//            Log.i("AA", "intent started");
+//        }else
+//            Log.i("AA","intent not started");
         displayMessage(priceMessage);
     }
 
@@ -72,7 +92,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private int calculatePrice(){
-        return orderQty* unitPrice;
+        int price = 0;
+        price =  orderQty* (unitPrice);
+        if(whippedCream) price += 1 * orderQty;
+        if(chocolate) price += 2 * orderQty;
+        return price;
     }
 
     /**
@@ -81,8 +105,21 @@ public class MainActivity extends AppCompatActivity {
      * @return String messages of order summary including customer name, order qty and total price.
      */
     private String orderSummary(int price){
-        String summary = "name:성윤식\nQuantity:" + orderQty + "\nTotal: $" + orderQty * unitPrice;
+        String name = ((EditText) findViewById(R.id.edittext_name)).getText().toString();
+        String summary = "name: " + name + "\n";
+        summary += "Add whipped cream? : " + whippedCream + "\n";
+        summary += "Add chocolate? : " + chocolate + "\n";
+        summary += "Quantity:" + orderQty + "\nTotal: $" + calculatePrice();
         if(orderQty>0) summary += "\nThank you!";
         return summary;
+    }
+
+    public void onCheckboxClicked(View view){
+        boolean isChecked = ((CheckBox) view).isChecked();
+        if(view.getId()==R.id.checkbox_whipped_cream)
+            whippedCream = isChecked;
+        if(view.getId()==R.id.checkbox_chocolate)
+            chocolate = isChecked;
+
     }
 }
