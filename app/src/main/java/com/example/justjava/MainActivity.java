@@ -55,19 +55,31 @@ public class MainActivity extends AppCompatActivity {
     public void submitOrder(View view) {
         int price = calculatePrice();
         String priceMessage = orderSummary(price);
-        Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Just Java Order");
         emailIntent.putExtra(Intent.EXTRA_TEXT, priceMessage);
+        emailIntent.setType("plain/text");
 
 //        emailIntent = new Intent(Intent.ACTION_VIEW);
 //        emailIntent.setData(Uri.parse("geo:47.6, -122.3"));
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+            Log.v("MainActivity", "Sharing the order summary to email");
+        }
+        catch (android.content.ActivityNotFoundException ex) {
+            Log.d("MainActivity", "No email app installed!");
+        }
 
 //        if(emailIntent.resolveActivity(getPackageManager()) != null) {
 //            startActivity(emailIntent);
 //            Log.i("AA", "intent started");
 //        }else
 //            Log.i("AA","intent not started");
-        displayMessage(priceMessage);
+//        displayMessage(priceMessage);
+
+
+
     }
 
     /**
