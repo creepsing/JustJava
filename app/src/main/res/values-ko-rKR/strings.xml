@@ -1,0 +1,15 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">윤식 카페</string>
+    <string name="name">이름</string>
+    <string name="toppings">토핑</string>
+    <string name="whipped_cream">휘핑크림</string>
+    <string name="chocolate">초콜렛</string>
+    <string name="quantity">수량</string>
+    <string name="order">주문</string>
+    <string name="name_v">성함: <xliff:g id="name" example="John">%s</xliff:g></string>
+    <string name="whipped_cream_v">휘핑크림 추가?: <xliff:g id="whippedCream" example="Yes">%b</xliff:g></string>
+    <string name="chocolate_v">초콜렛 추가?: <xliff:g id="chocolate" exmaple="Yes">%b</xliff:g></string>
+    <string name="total_v">"수량: <xliff:g id="orderQty" example="5">%d</xliff:g>\n금액: $<xliff:g id="calculatePrice()" example="50">%d</xliff:g>     "</string>
+    <string name="thankyou">\n\n감사합니다</string>
+    <string name="emailheader">윤식카페 주문서</string>
+</resources>

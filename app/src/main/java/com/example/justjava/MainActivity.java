@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice();
         String priceMessage = orderSummary(price);
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT,"Just Java Order");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,getString(R.string.emailheader));
         emailIntent.putExtra(Intent.EXTRA_TEXT, priceMessage);
         emailIntent.setType("plain/text");
 
@@ -90,18 +90,18 @@ public class MainActivity extends AppCompatActivity {
         quantityTextView.setText("" + number);
     }
 
-    private void displayPrice(String price) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText("$"+price);
-    }
+//    private void displayPrice(String price) {
+//        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+//        priceTextView.setText("$"+price);
+//    }
 
     /**
      * This method displays the given text on the screen.
      */
-    private void displayMessage(String message) {
-        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
-        priceTextView.setText(message);
-    }
+//    private void displayMessage(String message) {
+//        TextView priceTextView = (TextView) findViewById(R.id.price_text_view);
+//        priceTextView.setText(message);
+//    }
 
     private int calculatePrice(){
         int price = 0;
@@ -118,11 +118,11 @@ public class MainActivity extends AppCompatActivity {
      */
     private String orderSummary(int price){
         String name = ((EditText) findViewById(R.id.edittext_name)).getText().toString();
-        String summary = "name: " + name + "\n";
-        summary += "Add whipped cream? : " + whippedCream + "\n";
-        summary += "Add chocolate? : " + chocolate + "\n";
-        summary += "Quantity:" + orderQty + "\nTotal: $" + calculatePrice();
-        if(orderQty>0) summary += "\nThank you!";
+        String summary = getString(R.string.name_v,name) + "\n";
+        summary += getString(R.string.whipped_cream_v, whippedCream) + "\n";
+        summary += getString(R.string.chocolate_v, chocolate) + "\n";
+        summary += getString(R.string.total_v, orderQty, calculatePrice());
+        if(orderQty>0) summary += getString(R.string.thankyou);
         return summary;
     }
 
